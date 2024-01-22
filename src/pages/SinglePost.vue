@@ -1,8 +1,12 @@
 <template>
-    <div v-if="post">
-        <h1 >{{ post.title }}</h1>
-    <img :src="`${store.imgPath}${post.image}`" :alt="post.title">
-    </div>
+    <main class="container">
+        <div v-if="post">
+            <h1 >{{ post.title }}</h1>
+            <img :src="`${store.imgPath}${post.image}`" :alt="post.title">
+        </div>
+    </main>
+   
+   
     
 </template>
 
@@ -28,6 +32,8 @@ import { store } from '../store';
                         this.$router.push({ name: 'not-found' })
                     }
                    
+                }).catch((err)=>{
+                    console.log('error', err);
                 })
             }
         },

@@ -33,7 +33,7 @@
                     console.log(res.data);
                     this.store.posts = res.data.results.data;
                 }).catch((err)=>{
-                    
+                    console.log('error', err);
                 })
                    
                 }
