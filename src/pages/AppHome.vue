@@ -22,10 +22,10 @@ export default {
 
   },
   mounted() {
-    axios.get('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
+    // axios.get('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
 
-    }).catch((error) => {
-    })
+    // }).catch((error) => {
+    // })
   }
 
 }
