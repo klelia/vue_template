@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppHome from "./pages/AppHome.vue";
 import AppPosts from "./pages/AppPosts.vue";
 import SinglePost from "./pages/SinglePost.vue";
+import AppContact from "./pages/AppContact.vue";
 import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
@@ -23,6 +24,11 @@ const router = createRouter({
       component: SinglePost
     },
     {
+      path: "/contacts",
+      name: "contacts",
+      component: AppContact
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "not-found",
       component: NotFound
@@ -35,7 +41,7 @@ const router = createRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import("../pages/AboutView.vue"),
     // },
-  ],
+  ]
 });
 
 export default router;

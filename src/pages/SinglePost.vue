@@ -1,10 +1,10 @@
 <template>
-    <main class="container">
+   
         <div v-if="post">
             <h1 >{{ post.title }}</h1>
             <img :src="`${store.imgPath}${post.image}`" :alt="post.title">
         </div>
-    </main>
+        <router-link class="nav-link"  :to="{name: 'single-post', params: {slug: 'radio-podcast-e-digitale-al-posto-della-televisione-la-cultura-si-frammenta'}}">radio-podcast-e-digitale-al-posto-della-televisione-la-cultura-si-frammenta</router-link>
    
    
     

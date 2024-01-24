@@ -38,6 +38,11 @@ export default {
                     label: "Posts",
                     name: 'posts',
                    
+                },
+                {
+                    label: "Contacts",
+                    name: 'contacts',
+                   
                 }
             ]
         }
