@@ -1,8 +1,8 @@
 <template>
-  <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center my-3">
     <h1>Post List</h1>
     <select name="category" id="category" class="form-control" style="max-width:300px;" v-model="selectedCategory" @change="setParams()">
-        <option value="">All</option>
+        <option value="">--Choose category--</option>
         <option :value="category.id" v-for="(category, index) in store.categories" :key="index" >{{ category.name }}</option>
     </select>
   </div>
