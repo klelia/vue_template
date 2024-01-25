@@ -54,18 +54,18 @@
         },
         methods: {
             setParams(pageNum=1){
-                // const newparams = {
-                //     params: {
+                // 
+                //     const params: {
                 //         page: pageNum
                 //     }
-                // }
+                // 
                 const params = new URLSearchParams();
                 params.append('page', pageNum);
                 if(this.selectedCategory){
-                    //newparams.params.category = this.selectedCategory;  
+                    //params.category = this.selectedCategory;  
                     params.append('category', this.selectedCategory);                
                 }
-                //console.log(newparams);
+                //console.log(params);
                 this.getAllPosts(params);
             },
             getAllPosts(params){
