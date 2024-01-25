@@ -54,19 +54,22 @@
         },
         methods: {
             setParams(pageNum=1){
-                const newparams = {
-                    params: {
-                        page: pageNum
-                    }
-                }
+                // const newparams = {
+                //     params: {
+                //         page: pageNum
+                //     }
+                // }
+                const params = new URLSearchParams();
+                params.append('page', pageNum);
                 if(this.selectedCategory){
-                    newparams.params.category = this.selectedCategory;                  
+                    //newparams.params.category = this.selectedCategory;  
+                    params.append('category', this.selectedCategory);                
                 }
                 //console.log(newparams);
-                this.getAllPosts(newparams);
+                this.getAllPosts(params);
             },
             getAllPosts(params){
-                axios.get(`${this.store.apiBaseUrl}/posts`, params).then((res)=>{
+                axios.get(`${this.store.apiBaseUrl}/posts`, {params}).then((res)=>{
                     console.log(res.data);
                     this.store.posts = res.data.results.data;
                     this.currentPage = res.data.results.current_page;

@@ -23,7 +23,7 @@ import { store } from '../store';
         },
         methods:{
             getPostData(){
-                console.log(this.$route);
+                //console.log(this.$route);
                 axios.get(`${this.store.apiBaseUrl}/posts/${this.$route.params.slug}`).then((res)=>{
                     console.log(res.data)
                     if(res.data.results){
