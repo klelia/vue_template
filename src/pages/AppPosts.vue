@@ -71,6 +71,7 @@
             getAllPosts(params){
                 axios.get(`${this.store.apiBaseUrl}/posts`, {params}).then((res)=>{
                     console.log(res.data);
+                    //aggiungere controllo che l'array non sia vuoto
                     this.store.posts = res.data.results.data;
                     this.currentPage = res.data.results.current_page;
                     this.lastPage = res.data.results.last_page;
