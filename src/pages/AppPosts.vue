@@ -1,6 +1,12 @@
 <template>
-  
+  <div class="d-flex jusstify content-between-align-items-center">
     <h1>Post List</h1>
+    <select name="category" id="category" v-model="selectedCategory" @change="setParams()">
+        <option value="">All</option>
+        <option :value="category.id" v-for="(category, index) in store.categories" :key="index" >{{ category.name }}</option>
+    </select>
+  </div>
+    
     <div class="row">
         <div class="col-12 col-md-4 col-lg-3" v-for="post in store.posts" :key="post.id">
             <AppCard :post="post"/>
@@ -9,14 +15,14 @@
     <nav class="d-flex justify-content-center align-items-center my-4">
         <ul class="pagination">
     <li class="page-item" :class="{'disabled': currentPage === 1}">
-        <button class="page-link" :disabled="currentPage === 1" @click="getAllPosts(currentPage - 1)">Previous
+        <button class="page-link" :disabled="currentPage === 1" @click="setParams(currentPage - 1)">Previous
         </button>
     </li>
     <li class="page-item" v-for="n in lastPage">
-        <button class="page-link" @click="getAllPosts(n)">{{n}}</button>
+        <button class="page-link" @click="setParams(n)">{{n}}</button>
     </li> 
     <li class="page-item" :class="{'disabled': currentPage === lastPage}">
-        <button class="page-link" :disabled="currentPage === lastPage" @click="getAllPosts(currentPage + 1)">Next
+        <button class="page-link" :disabled="currentPage === lastPage" @click="setParams(currentPage + 1)">Next
         </button>
     </li>   
   </ul>
@@ -41,12 +47,26 @@
                 store,
                 currentPage: 1,
                 lastPage: null,
-                total: 0          
+                total: 0,
+                selectedCategory: '',
+                        
             }
         },
         methods: {
-            getAllPosts(pageNum){
-                axios.get(`${this.store.apiBaseUrl}/posts`,{params: {page: pageNum}}).then((res)=>{
+            setParams(pageNum=1){
+                const newparams = {
+                    params: {
+                        page: pageNum
+                    }
+                }
+                if(this.selectedCategory){
+                    newparams.params.category = this.selectedCategory;                  
+                }
+                //console.log(newparams);
+                this.getAllPosts(newparams);
+            },
+            getAllPosts(params){
+                axios.get(`${this.store.apiBaseUrl}/posts`, params).then((res)=>{
                     console.log(res.data);
                     this.store.posts = res.data.results.data;
                     this.currentPage = res.data.results.current_page;
@@ -56,10 +76,20 @@
                     console.log('error', err);
                 })
                    
+                },
+                getAllCategories(){
+                    axios.get(`${this.store.apiBaseUrl}/categories`).then((res)=>{
+                        console.log(res.data);
+                        this.store.categories = res.data.results;
+                    }).catch((err)=>{
+                        
+                    })
                 }
             },
             created(){
-                this.getAllPosts(this.currentPage);
+                this.getAllCategories();
+                this.setParams();
+                
             }
         }
 </script>
