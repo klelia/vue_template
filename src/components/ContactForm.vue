@@ -99,9 +99,9 @@
             })
         },
         validateForm(data){
-            if(!data.checkValidity())
-            this.validForm = false;
-            Array.from(data.elements).forEach((el)=>{
+            if(!data.checkValidity()){
+                this.validForm = false;
+                Array.from(data.elements).forEach((el)=>{
                 // console.log(el);
                 //console.log(el.validity)
                 // console.log(el.validity.valid)
@@ -110,6 +110,7 @@
                     if(el.validity.typeMismatch)this.errors[el.id].push('The field must be a valid email');
                 }
              });
+            }
             return this.validForm;
         },
     }
